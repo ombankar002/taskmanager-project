@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Tasks</title>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+<h3>Task List</h3>
+<ul>
+    <li th:each="task : ${tasks}">
+        <span th:text="${task.title}"></span>
+    </li>
+</ul>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>

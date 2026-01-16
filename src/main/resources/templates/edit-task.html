@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Edit Task</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+
+<body class="edit-page">
+
+<div th:replace="fragments/header :: header"></div>
+
+<!-- 🔥 MAIN CONTENT WRAPPER -->
+<div class="main-content">
+    <div class="container">
+
+        <h2>Edit Task</h2>
+
+        <form th:action="@{/update-task/{id}(id=${task.id})}" method="post">
+
+            <input type="text"
+                   name="title"
+                   th:value="${task.title}"
+                   required/>
+
+            <input type="text"
+                   name="description"
+                   th:value="${task.description}"
+                   required/>
+
+            <select name="priority" required>
+                <option value="LOW"
+                        th:selected="${task.priority.name() == 'LOW'}">
+                    Low
+                </option>
+                <option value="MEDIUM"
+                        th:selected="${task.priority.name() == 'MEDIUM'}">
+                    Medium
+                </option>
+                <option value="HIGH"
+                        th:selected="${task.priority.name() == 'HIGH'}">
+                    High
+                </option>
+            </select>
+
+            <input type="hidden"
+                   name="completed"
+                   th:value="${task.completed}"/>
+
+            <button type="submit">Update</button>
+            <a th:href="@{/}">Cancel</a>
+
+        </form>
+
+    </div>
+</div>
+
+<div th:replace="fragments/footer :: footer"></div>
+
+</body>
+</html>
